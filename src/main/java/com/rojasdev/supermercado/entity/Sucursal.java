@@ -24,7 +24,10 @@ public class Sucursal {
     private Long id;
 
     private String nombre;
-    private String direccion;
+    private String calle;
+    private String colonia;
+    private String ciudad;
+    private String cp;
 
     private String operacion;
     private LocalDateTime ultimaModificacion;
