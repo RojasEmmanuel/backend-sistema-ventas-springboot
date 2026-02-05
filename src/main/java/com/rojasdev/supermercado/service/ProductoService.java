@@ -42,7 +42,7 @@ public class ProductoService {
     @Transactional(readOnly = true)
     public List<ProductoResponse> getProductos(){
 
-       return repository.findAll().stream().map(
+       return repository.findByActivo(true).stream().map(
             producto -> new ProductoResponse(
                 producto.getId(),
                 producto.getNombre(),
