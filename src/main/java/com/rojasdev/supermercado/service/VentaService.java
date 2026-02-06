@@ -3,7 +3,9 @@ package com.rojasdev.supermercado.service;
 import com.rojasdev.supermercado.DTO.ItemVentaResponse;
 import com.rojasdev.supermercado.DTO.VentaCreateDTO;
 import com.rojasdev.supermercado.DTO.VentaReponse;
+import com.rojasdev.supermercado.DTO.VentaResponseGral;
 import com.rojasdev.supermercado.domain.EstatusVenta;
+import com.rojasdev.supermercado.entity.ItemVenta;
 import com.rojasdev.supermercado.entity.Sucursal;
 import com.rojasdev.supermercado.entity.Venta;
 import com.rojasdev.supermercado.repository.SucursalRepository;
@@ -24,12 +26,21 @@ public class VentaService {
     private final SucursalRepository sucursalRepository;
 
     @Transactional(readOnly = true)
-    public List<Venta> consultarVentas(Long idSucursal){
+    public List<VentaResponseGral> consultarVentas(Long idSucursal){
+
         Sucursal sucursal = sucursalRepository.findById(idSucursal).orElseThrow(
-                ()->new RuntimeException("Este sucursal no existe")
+                ()->new IllegalArgumentException("No existe esta sucursal")
         );
 
-        return repository.findBySucursal(sucursal);
+        return repository.findBySucursal(sucursal).stream()
+        .map(venta -> new VentaResponseGral(
+                venta.getId(),
+                venta.getSucursal().getNombre(),
+                venta.getFechaVenta().toLocalDate(),
+                venta.getEstatus(),
+                venta.getNombreCliente()+" "+venta.getApellidosCliente(),
+                venta.getTotal()
+        )).toList();
     }
 
     @Transactional

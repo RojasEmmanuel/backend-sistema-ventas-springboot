@@ -2,7 +2,7 @@ package com.rojasdev.supermercado.controller;
 
 import com.rojasdev.supermercado.DTO.VentaCreateDTO;
 import com.rojasdev.supermercado.DTO.VentaReponse;
-import com.rojasdev.supermercado.entity.Venta;
+import com.rojasdev.supermercado.DTO.VentaResponseGral;
 import com.rojasdev.supermercado.service.VentaService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ public class VentaController {
     }
 
     @GetMapping("/{idSucursal}")
-    public List<Venta> getVentasSucursal(@PathVariable Long idSucursal){
+    public List<VentaResponseGral> getVentasSucursal(@PathVariable Long idSucursal){
         return service.consultarVentas(idSucursal);
     }
 
