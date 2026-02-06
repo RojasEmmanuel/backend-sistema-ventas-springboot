@@ -1,5 +1,6 @@
 package com.rojasdev.supermercado.repository;
 
+import com.rojasdev.supermercado.domain.EstatusVenta;
 import com.rojasdev.supermercado.entity.Sucursal;
 import com.rojasdev.supermercado.entity.Venta;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,5 @@ import java.util.List;
 @Repository
 public interface VentaRepository extends JpaRepository<Venta, Long> {
     List<Venta> findBySucursal(Sucursal sucursal);
+    Venta findByEstatus(EstatusVenta estatus);
 }

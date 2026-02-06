@@ -1,6 +1,6 @@
 package com.rojasdev.supermercado.domain;
 
-public enum EstatusCompra {
+public enum EstatusVenta {
     ACTIVA,
     FINALIZADA,
     CANCELADA

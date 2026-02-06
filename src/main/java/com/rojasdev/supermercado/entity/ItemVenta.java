@@ -22,7 +22,6 @@ public class ItemVenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private int cantidad;
     private BigDecimal subtotal;
 

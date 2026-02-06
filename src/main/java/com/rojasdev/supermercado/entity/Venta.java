@@ -1,13 +1,12 @@
 package com.rojasdev.supermercado.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.rojasdev.supermercado.domain.EstatusCompra;
+import com.rojasdev.supermercado.domain.EstatusVenta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,7 +26,7 @@ public class Venta {
 
     private LocalDateTime fechaVenta;
     private BigDecimal total;
-    private EstatusCompra estatus;
+    private EstatusVenta estatus;
 
     @Column(name = "nombre_cliente")
     private String nombreCliente;
@@ -45,7 +44,7 @@ public class Venta {
 
     @PrePersist
     public void prepersist(){
-        this.estatus = EstatusCompra.ACTIVA;
+        this.estatus = EstatusVenta.ACTIVA;
         this.total = BigDecimal.ZERO;
         fechaVenta = LocalDateTime.now();
     }
