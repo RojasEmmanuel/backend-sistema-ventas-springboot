@@ -32,7 +32,7 @@ public class Sucursal {
     private String operacion;
     private LocalDateTime ultimaModificacion;
 
-    @OneToMany(mappedBy = "sucursal")
+    @OneToMany(mappedBy = "sucursal", cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private List<Venta> ventas;
 

@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 @AllArgsConstructor
 public class SucursalCreate {
-
     @NotBlank
     @Length(min = 3, max = 50)
     private final String nombre;

@@ -1,5 +1,6 @@
 package com.rojasdev.supermercado.service;
 
+import com.rojasdev.supermercado.DTO.ItemVentaResponse;
 import com.rojasdev.supermercado.domain.EstatusVenta;
 import com.rojasdev.supermercado.entity.ItemVenta;
 import com.rojasdev.supermercado.entity.Producto;
@@ -48,12 +49,18 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    public List<ItemVenta> getCarrito(Long idVenta){
+    public List<ItemVentaResponse> getCarrito(Long idVenta){
         Venta venta = ventaRepository.findById(idVenta).orElseThrow(
                 ()-> new IllegalArgumentException("Esta venta no existe")
         );
 
-        return repository.findByVenta(venta);
+        return repository.findByVenta(venta).stream()
+                .map(itemVenta->new ItemVentaResponse(
+                        itemVenta.getId(),
+                        itemVenta.getProducto().getNombre(),
+                        itemVenta.getCantidad(),
+                        itemVenta.getSubtotal()
+                )).toList();
     }
 
     @Transactional

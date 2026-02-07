@@ -1,5 +1,6 @@
 package com.rojasdev.supermercado.controller;
 
+import com.rojasdev.supermercado.DTO.ItemVentaResponse;
 import com.rojasdev.supermercado.entity.ItemVenta;
 import com.rojasdev.supermercado.service.ItemService;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class ItemController {
     }
 
     @GetMapping("/{idVenta}")
-    public List<ItemVenta> getItemVenta(@PathVariable Long idVenta){
+    public List<ItemVentaResponse> getItemVenta(@PathVariable Long idVenta){
         return service.getCarrito(idVenta);
     }
 
